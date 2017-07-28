@@ -38,7 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "physio\\mylittlecms\\": "src"
+            "physio\\mylittlecms\\": "src/app"
         }
     },
     "autoload-dev": {
