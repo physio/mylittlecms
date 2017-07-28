@@ -29,6 +29,7 @@
         "barryvdh/laravel-debugbar": "^2.4",
         "greggilbert/recaptcha": "^2.2",
         "spatie/laravel-cookie-consent": "^1.8",
+        "cviebrock/eloquent-sluggable": "^4.2",        
         "spatie/laravel-sitemap": "^2.2"
     },
     "minimum-stability": "dev",    
