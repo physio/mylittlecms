@@ -7,9 +7,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use App\Models\Article;
+use Physio\MyLittleCMS\Models\Article;
 use App\Models\Activity;
-use Feeds;
+
 
 class Controller extends BaseController
 {
@@ -28,12 +28,7 @@ class Controller extends BaseController
     public function getFooterInfo()
     {
     	 $articles = Article::select('slug', 'image')->where('published', 1)->inRandomOrder()->limit(4)->get();
-    	 $feed = Feeds::make('http://www.maerco.it/rss_from_fb/?pageid=548624975150553');
-    	     $feeds = array(
-		      'title'     => $feed->get_title(),
-		      'permalink' => $feed->get_permalink(),
-		      'items'     => $feed->get_items(),
-		    );  
+    	   
 
     	 $infos = array(
     	 	'news' => $articles,

@@ -26,8 +26,13 @@ class MyLittleCMSServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'MyLittleCMS');
         $this->routes();
         $this->loadMigrationsFrom(__DIR__. '/../database/migrations');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/MyLittleCMS'),
+            ]);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Physio\MyLittleCMS\Http\Controllers;
 
-use App\Models\Article;
+use Physio\MyLittleCMS\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -34,7 +34,7 @@ class ArticleController extends Controller
         $data['list'] = $list;
         $data['news'] = $this->getLastNews();        
 
-        return view('pages.article-grid')->with($data);
+        return view('vendor.MyLittleCMS.article.grid')->with($data);
     }    
 
 
