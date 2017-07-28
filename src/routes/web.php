@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace' => '\physio\mylittlecms\Http\Controllers'], function () {
+Route::group(['namespace' => '\Physio\MyLittleCMS\Http\Controllers'], function () {
 	Route::get('/news', 'ArticleController@index');
 
 });

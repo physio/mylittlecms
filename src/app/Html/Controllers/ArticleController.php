@@ -1,6 +1,6 @@
 <?php
 
-namespace physio\mylittlecms\Http\Controllers;
+namespace Physio\MyLittleCMS\Http\Controllers;
 
 use App\Models\Article;
 

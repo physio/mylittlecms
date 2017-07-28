@@ -38,12 +38,12 @@
     },
     "autoload": {
         "psr-4": {
-            "physio\\mylittlecms\\": "src/app"
+            "Physio\\MyLittleCMS\\": "src/app"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "physio\\mylittlecms\\": "tests"
+            "Physio\\MyLittleCMS\\": "tests"
         }
     },
     "scripts": {

@@ -30,6 +30,34 @@ Via Composer
 
 ``` bash
 $ composer require physio/mylittlecms
+
+$ php artisan vendor:publish --provider="Backpack\Base\BaseServiceProvider" 
+#publishes configs, langs, views and AdminLTE files
+$ php artisan vendor:publish --provider="Prologue\Alerts\AlertsServiceProvider"# publish config for notifications - prologue/alerts
+
+php artisan elfinder:publish #published elfinder assets
+php artisan vendor:publish --provider="Backpack\CRUD\CrudServiceProvider" --tag="public" #publish CRUD assets
+php artisan vendor:publish --provider="Backpack\CRUD\CrudServiceProvider" --tag="lang" #publish CRUD lang files 
+php artisan vendor:publish --provider="Backpack\CRUD\CrudServiceProvider" --tag="config" #publish CRUD and custom elfinder config files
+php artisan vendor:publish --provider="Backpack\CRUD\CrudServiceProvider" --tag="elfinder" #publish custom elFinder views
+
+
+$ php artisan migrate #generates users table (using Laravel's default migrations)
+```
+before class name use Backpack\Base\app\Notifications\RsetPasswordNotification as ResetPasswordNotification;
+
+as a method inside the User class:
+``` php
+  /**
+   * Send the password reset notification.
+   *
+   * @param  string  $token
+   * @return void
+   */
+  public function sendPasswordResetNotification($token)
+  {
+      $this->notify(new ResetPasswordNotification($token));
+  }
 ```
 
 ## Usage
