@@ -2,45 +2,26 @@
 
 namespace Physio\MyLittleCMS\Models;
 
-use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Backpack\CRUD\CrudTrait;
 
-class Article extends Model
+class Category extends Model
 {
-    use Sluggable;
-    use SluggableScopeHelpers;
     use CrudTrait;
-	use \Backpack\CRUD\CrudTrait, \Venturecraft\Revisionable\RevisionableTrait;
-    
+
      /*
 	|--------------------------------------------------------------------------
 	| GLOBAL VARIABLES
 	|--------------------------------------------------------------------------
 	*/
 
-    protected $table = 'articles';
-    protected $primaryKey = 'id';
-    public $timestamps = true;
+    protected $table = 'categories';
+    //protected $primaryKey = 'id';
+    // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'title', 'user_id', 'content', 'image', 'published', 'category_id', 'featured', 'date', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'slug'];
     // protected $hidden = [];
     // protected $dates = [];
-    protected $casts = [
-        'featured'  => 'boolean',
-        'date'      => 'date',
-        'photos'    => 'array',
-    ];
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'slug_or_title',
-            ],
-        ];
-    }
 
     /*
 	|--------------------------------------------------------------------------
@@ -48,25 +29,30 @@ class Article extends Model
 	|--------------------------------------------------------------------------
 	*/
 
-    public static function boot()
-    {
-        parent::boot();
-    }
-
     /*
 	|--------------------------------------------------------------------------
 	| RELATIONS
 	|--------------------------------------------------------------------------
 	*/
 
-    public function category()
+    /*public function activity()
     {
-        return $this->belongsTo('Physio\MyLittleCMS\Models\Category', 'category_id');
+        return $this->hasMany('Physio\MyLittleCMS\Models\Activity');
+    }*/
+
+    public function articles()
+    {
+        return $this->hasMany('Physio\MyLittleCMS\Models\Article');
     }
 
-    public function user()
+    public function slides()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->hasMany('Physio\MyLittleCMS\Models\Slide');
+    }
+
+    public function presentation()
+    {
+        return $this->hasMany('Physio\MyLittleCMS\Models\Presentation');
     }
 
     /*
@@ -75,35 +61,32 @@ class Article extends Model
 	|--------------------------------------------------------------------------
 	*/
 
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'PUBLISHED')
+                    ->where('date', '<=', date('Y-m-d'))
+                    ->orderBy('date', 'DESC');
+    }
+
     /*
 	|--------------------------------------------------------------------------
 	| ACCESORS
 	|--------------------------------------------------------------------------
 	*/
 
-    // The slug is created automatically from the "name" field if no slug exists.
+
+    // The slug is created automatically from the "title" field if no slug exists.
     public function getSlugOrTitleAttribute()
     {
         if ($this->slug != '') {
             return $this->slug;
         }
-
         return $this->title;
     }
-    
+
     /*
 	|--------------------------------------------------------------------------
 	| MUTATORS
 	|--------------------------------------------------------------------------
 	*/
-    public function setPhotosAttribute($value)
-    {
-        $attribute_name = "photos";
-        $disk = "public";
-        $destination_path = "folder_1/subfolder_1";
-
-        $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
-    }
-
-
 }

@@ -6,6 +6,11 @@ use Physio\MyLittleCMS\Models\Article;
 
 class ArticleController extends Controller
 {
+
+
+
+
+    
     public function show($slug)
     {
         $article = Article::findBySlug($slug);
@@ -13,18 +18,22 @@ class ArticleController extends Controller
 
         if (!$article)
         {
-            abort(404, 'Please go back to our <a href="'.url('').'">homepage</a>.');
+            $this->abort404();
         }
 
         return view('pages.news-single')->with(['title' => $article->title, 'news' => $news, 'article' => $article, 'footer' => $this->getFooterInfo()]);
     }
+
+
+
+
 
     public function index()
     {
         $list = Article::where('published', 1)->where('date' ,'<=', time())->paginate();
         if (!$list)
         {
-            abort(404, 'Per favore torna alla nostra <a href="'.url('').'">homepage</a>.');
+            $this->abort404();
         }        
 
         $data['title'] = 'Notizie';
