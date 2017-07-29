@@ -19,7 +19,7 @@ class Controller extends BaseController
 
 
 
-    public public function abort404($value='')
+    public function abort404($value='')
     {
         abort(404, 'Per favore torna alla nostra <a href="'.url('').'">homepage</a>.');
     }
