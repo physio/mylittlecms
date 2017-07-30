@@ -33,74 +33,80 @@ class ArticleCrudController extends CrudController
         $this->crud->addColumn(['name'=> 'id', 'type'=>'select', 'entity'=>'category', 'attribute'=>'name', 'model'=>'App\Models\Category', 'label' => 'Categoria']); 
         
         $this->crud->addColumn([
-                                'label' => 'Categoria',
-                                'type' => 'select',
-                                'name' => 'category_id',
-                                'entity' => 'category',
-                                'attribute' => 'name',
-                                'model' => "Physio\MyLittleCMS\Models\Category",
-                            ]);
+            'label' => 'Categoria',
+            'type' => 'select',
+            'name' => 'category_id',
+            'entity' => 'category',
+            'attribute' => 'name',
+            'model' => "Physio\MyLittleCMS\Models\Category",
+            ]);
+        $this->crud->addColumn([
+           'name' => 'published', // The db column name
+           'label' => "Pubblicato", // Table column heading
+           'type' => 'check'
+           ]);
+
         $this->crud->removeColumns(['slug', 'content', 'image', 'date', 'category_id', 'status', 'user_id']);
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
-                                'name' => 'title',
-                                'label' => 'Title',
-                                'type' => 'text',
-                                'placeholder' => 'Your title here',
-                            ]);
+            'name' => 'title',
+            'label' => 'Title',
+            'type' => 'text',
+            'placeholder' => 'Your title here',
+            ]);
         $this->crud->addField([
-                                'name' => 'slug',
-                                'label' => 'Slug (URL)',
-                                'type' => 'text',
-                                'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
+            'name' => 'slug',
+            'label' => 'Slug (URL)',
+            'type' => 'text',
+            'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
                                 // 'disabled' => 'disabled'
-                            ]);
+            ]);
         $this->crud->addField([    // TEXT
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
-                                'value' => date('Y-m-d'),
-                            ], 'create');
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date',
+            'value' => date('Y-m-d'),
+            ], 'create');
         $this->crud->addField([    // TEXT
-                                'name' => 'date',
-                                'label' => 'Data Pubblicazione',
-                                'type' => 'date',
-                            ], 'update');
+            'name' => 'date',
+            'label' => 'Data Pubblicazione',
+            'type' => 'date',
+            ], 'update');
         $this->crud->addField([    // WYSIWYG
-                                'name' => 'content',
-                                'label' => 'Contenuto',
-                                'type' => 'ckeditor',
-                                'placeholder' => 'Your textarea text here',
-                            ]);
+            'name' => 'content',
+            'label' => 'Contenuto',
+            'type' => 'ckeditor',
+            'placeholder' => 'Your textarea text here',
+            ]);
         $this->crud->addField([    // Image
-                                'name' => 'image',
-                                'label' => 'Immagine',
-                                'type' => 'browse',
-                            ]);
+            'name' => 'image',
+            'label' => 'Immagine',
+            'type' => 'browse',
+            ]);
         $this->crud->addField([    // Image
-                                'name' => 'user_id',
-                                'type' => 'hidden',
-                                'value' => \Auth::id(),
-                            ]);        
+            'name' => 'user_id',
+            'type' => 'hidden',
+            'value' => \Auth::id(),
+            ]);        
         $this->crud->addField([    // SELECT
-                                'label' => 'Categoria',
-                                'type' => 'select2',
-                                'name' => 'category_id',
-                                'entity' => 'category',
-                                'attribute' => 'name',
-                                'model' => "Physio\MyLittleCMS\Models\Category",
-                            ]);
+            'label' => 'Categoria',
+            'type' => 'select2',
+            'name' => 'category_id',
+            'entity' => 'category',
+            'attribute' => 'name',
+            'model' => "Physio\MyLittleCMS\Models\Category",
+            ]);
 
         $this->crud->addField([    // ENUM
-                                'name' => 'published',
-                                'label' => 'Pubblicato',
-                                'type' => 'checkbox',
-                            ]);
+            'name' => 'published',
+            'label' => 'Pubblicato',
+            'type' => 'checkbox',
+            ]);
         $this->crud->addField([    // CHECKBOX
-                                'name' => 'featured',
-                                'label' => 'In Evidenza',
-                                'type' => 'checkbox',
-                            ]);
+            'name' => 'featured',
+            'label' => 'In Evidenza',
+            'type' => 'checkbox',
+            ]);
 
      /*   $this->crud->addField([   // Upload
                             'name' => 'photos',
@@ -108,7 +114,7 @@ class ArticleCrudController extends CrudController
                             'type' => 'upload_multiple',
                             'upload' => true,
                             'disk' => 'uploads' // if you store files in the /public folder, please ommit this; if you store them in /storage or S3, please specify it;
-                        ]);*/
+                            ]);*/
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -147,8 +153,8 @@ class ArticleCrudController extends CrudController
         // ------ REVISIONS
         // You also need to use \Venturecraft\Revisionable\RevisionableTrait;
         // Please check out: https://laravel-backpack.readme.io/docs/crud#revisions
-        $this->crud->allowAccess('revisions');
-        $this->crud->with('revisionHistory');
+                            $this->crud->allowAccess('revisions');
+                            $this->crud->with('revisionHistory');
 
         // ------ AJAX TABLE VIEW
         // Please note the drawbacks of this though:
@@ -173,23 +179,23 @@ class ArticleCrudController extends CrudController
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
-    }
+                        }
 
-	public function store(StoreRequest $request)
-	{
+                        public function store(StoreRequest $request)
+                        {
 		// your additional operations before save here
-        $redirect_location = parent::storeCrud();
+                            $redirect_location = parent::storeCrud();
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
-	}
+                            return $redirect_location;
+                        }
 
-	public function update(UpdateRequest $request)
-	{
+                        public function update(UpdateRequest $request)
+                        {
 		// your additional operations before save here
-        $redirect_location = parent::updateCrud();
+                            $redirect_location = parent::updateCrud();
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
-	}
-}
+                            return $redirect_location;
+                        }
+                    }
