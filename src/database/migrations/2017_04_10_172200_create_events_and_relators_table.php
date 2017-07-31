@@ -27,6 +27,28 @@ class CreateEventsTable extends Migration
             $table->string('registration')->nullable();
 
         });
+
+
+        Schema::create('relators', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->string('surname');
+            $table->string('name');
+            $table->text('cv');
+            $table->string('photo');
+            $table->boolean('published')->default(1);
+        });
+
+
+        Schema::create('event_relator', function (Blueprint $table) {
+            $table->integer('event_id')->unsigned()->index();
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->integer('relator_id')->unsigned()->index();
+            $table->foreign('relator_id')->references('id')->on('relators')->onDelete('cascade');
+            $table->primary(['event_id', 'relator_id']);
+        });            
     }
 
     /**
