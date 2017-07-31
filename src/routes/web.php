@@ -7,9 +7,9 @@ Route::group([
 		Route::get('/notizie/elenco', 'ArticleController@index');
 		Route::get('/notizie/dettaglio/{slug}', 'ArticleController@show');
 
-		Route::get('/servizi/{slug}', 'ActivityController@index');
-		Route::get('/servizi/elenco/{slug}', 'ActivityController@category');
-		Route::get('/servizi/dettaglio/{slug}', 'ActivityController@show');
+		Route::get('/servizi/{slug}', 'ServiceController@index');
+		Route::get('/servizi/elenco/{slug}', 'ServiceController@category');
+		Route::get('/servizi/dettaglio/{slug}', 'ServiceController@show');
 
 		Route::get('/eventi/elenco/{eventState}', 'EventController@index');
 		Route::get('/eventi/dettaglio/{slug}', 'EventController@show');
