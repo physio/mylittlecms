@@ -96,7 +96,7 @@ class ServiceCrudController extends CrudController
            'type' => 'check'
            ]);          
 
-        $this->crud->removeColumn('category_id')
+        $this->crud->removeColumn('category_id');
         $this->crud->addColumn([
                                 'label' => 'Categoria',
                                 'type' => 'select',
