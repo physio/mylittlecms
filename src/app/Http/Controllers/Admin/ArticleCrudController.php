@@ -30,8 +30,8 @@ class ArticleCrudController extends CrudController
 		*/
 
         $this->crud->setFromDb();
-        $this->crud->addColumn(['name'=> 'id', 'type'=>'select', 'entity'=>'category', 'attribute'=>'name', 'model'=>'App\Models\Category', 'label' => 'Categoria']); 
         
+        $this->crud->removeColumn('category_id');        
         $this->crud->addColumn([
             'label' => 'Categoria',
             'type' => 'select',
@@ -40,6 +40,8 @@ class ArticleCrudController extends CrudController
             'attribute' => 'name',
             'model' => "Physio\MyLittleCMS\Models\Category",
             ]);
+
+        $this->crud->removeColumn('published');
         $this->crud->addColumn([
            'name' => 'published', // The db column name
            'label' => "Pubblicato", // Table column heading
@@ -53,7 +55,12 @@ class ArticleCrudController extends CrudController
            'type' => 'check'
            ]);        
 
-        $this->crud->removeColumns(['slug', 'content', 'image', 'date', 'category_id', 'status', 'user_id']);
+        $this->crud->removeColumns(['slug', 'content', 'image', 'date', 'status', 'user_id']);
+
+
+
+
+
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
             'name' => 'title',
