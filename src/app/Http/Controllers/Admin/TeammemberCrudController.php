@@ -86,7 +86,7 @@ class TeammemberCrudController extends CrudController
                                 'name' => 'services', // the method that defines the relationship in your Model
                                 'entity' => 'services', // the method that defines the relationship in your Model
                                 'attribute' => 'title', // foreign key attribute that is shown to user
-                                'model' => "App\Models\Service", // foreign key model
+                                'model' => "Physio\MyLittleCMS\Models\Service", // foreign key model
                                 'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
                             ]    );   
 
