@@ -21,7 +21,7 @@ class CreateTeammembersTable extends Migration
             $table->string('name');
             $table->string('role');            
             $table->text('cv');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->boolean('published')->default(1);
             $table->boolean('major')->default(0);
         });
