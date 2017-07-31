@@ -8,7 +8,7 @@ use Physio\MyLittleCMS\Models\Slide;
 use Physio\MyLittleCMS\Models\Presentation;
 use Physio\MyLittleCMS\Models\Testimonial;
 use Physio\MyLittleCMS\Models\Article;
-use Physio\MyLittleCMS\Models\Activity;
+use Physio\MyLittleCMS\Models\Service;
 use Physio\MyLittleCMS\Models\Event;
 
 class HomeController extends Controller
@@ -39,7 +39,7 @@ class HomeController extends Controller
         $now = new Carbon;
         $events = Event::where('dateStart', '>', $now)->where('published', true)->orderBy('dateStart', 'desc')->paginate(); 
 
-        $activities = Activity::where('published', 1)->inRandomOrder()->limit(3)->get();
+        $activities = Service::where('published', 1)->inRandomOrder()->limit(3)->get();
 
         return view('vendor.MyLittleCMS.home')->with(['title' => 'Home', 'events' => $events, 'slides' => $slides, 'presentation' => $presentation, 'testimonials' => $testimonials, 'activities' => $activities, 'articles' => $articles, 'footer' => $this->getFooterInfo()]);
     }

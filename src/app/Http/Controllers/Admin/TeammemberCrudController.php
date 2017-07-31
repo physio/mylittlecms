@@ -83,10 +83,10 @@ class TeammemberCrudController extends CrudController
         $this->crud->addField([       // SelectMultiple = n-n relationship (with pivot table)
                                 'label' => "Servizi",
                                 'type' => 'select_multiple',
-                                'name' => 'activities', // the method that defines the relationship in your Model
-                                'entity' => 'activities', // the method that defines the relationship in your Model
+                                'name' => 'services', // the method that defines the relationship in your Model
+                                'entity' => 'services', // the method that defines the relationship in your Model
                                 'attribute' => 'title', // foreign key attribute that is shown to user
-                                'model' => "App\Models\Activity", // foreign key model
+                                'model' => "App\Models\Service", // foreign key model
                                 'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
                             ]    );   
 

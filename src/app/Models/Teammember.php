@@ -66,9 +66,9 @@ class Teammember extends Model
         $this->attributes['surname'] = strtoupper($value);
     }
 
-    public function activities()
+    public function services()
     {
-        return $this->belongsToMany('Physio\MyLittleCMS\Models\Activity');
+        return $this->belongsToMany('Physio\MyLittleCMS\Models\Service');
 	}    
 
 }
