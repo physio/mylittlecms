@@ -3,7 +3,7 @@
 namespace Physio\MyLittleCMS\Http\Controllers;
 
 use Backpack\PageManager\app\Models\Page;
-use App\Models\Provider;
+use Physio\MyLittleCMS\Models\Provider;
 
 class ProviderController extends Controller
 {
@@ -13,20 +13,19 @@ class ProviderController extends Controller
 
         if (!$provider)
         {
-            abort(404, 'Per favore torna alla nostra <a href="'.url('').'">homepage</a>.');
+            $this->abort404();
         }
 
         $data['title'] = $provider->companyName;
         $data['provider'] = $provider;
         $data['footer'] = $this->getFooterInfo();
 
-        return view('pages.provider_single')->with($data);
+        return view('vendor.MyLittleCMS.provider.single')->with($data);
     }
 
     public function index()
     {
         $listMajor = Provider::where('published', 1)->get();
-
 
         $data['title'] = 'I Nostri Fornitori';
         $data['content'] = '';
@@ -34,8 +33,7 @@ class ProviderController extends Controller
         $data['footer'] = $this->getFooterInfo();
         $data['listMajor'] = $listMajor;
 
-
-        return view('pages.providers')->with($data);
+        return view('vendor.MyLittleCMS.article.grid')->with($data);
     }
 
 

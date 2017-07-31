@@ -28,7 +28,6 @@ class RelatorController extends Controller
     {
         $list = Relator::where('published', 1)->get();
 
-
         $data['title'] = 'I Relatori';
         $data['content'] = '';
         $data['extras'] = '';

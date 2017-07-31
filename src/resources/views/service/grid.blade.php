@@ -1,26 +1,9 @@
-@extends('layouts.default')
+@extends('MyLittleCMS::layouts.default')
 
 @section('content')
-            <hr class="line-style" />
-            
-            <div id="content-container">
-                
-                <hr id="dynamic-side-line" class="line-style" />
-                
-                <div id="inner-content-container" class="main-width">
-                    
-                    <!-- Page Intro -->
-                    <div id="intro-wrapper">
-                        <h1 id="intro-title">I Nostri Servizi</h1>
-                    </div>
-                    <!-- End id="intro-wrapper" -->
-                    
-                    <div id="content-wrapper" class="with-sidebar">
-                        
-                        <div class="row">
-                            <div class="large-12 columns">
+
                                 <h2>{{ $title }}</h2>
-                                <div id="blog-list-wrapper">
+
                                     @foreach ($list as $activity) 
                                     <div class="blog-item">
                                         <div class="blog-thumbnail image-element">
@@ -52,24 +35,7 @@
                                     </div>
                                     @endforeach
                                    
-                                </div>
-                                <!-- End id="blog-list-wrapper" -->
-                                                                
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- End id="content-wrapper" -->
-                    
-                    <!-- Sidebar -->
-                            @include('includes.sidebar')
-                    <!-- End id="sidebar-wrapper" -->
-                    
-                </div>
-                <!-- End id="inner-content-container" -->
-                
-            </div>
-            <!-- End id="content-container" -->
+
             
 
 @endsection

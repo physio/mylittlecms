@@ -36,15 +36,15 @@ Route::group([
 	], function () {
 		CRUD::resource('category', 'Admin\CategoryCrudController');
 		CRUD::resource('article', 'Admin\ArticleCrudController');
-	//	CRUD::resource('presentation', 'Admin\PresentationCrudController');		
+		CRUD::resource('presentation', 'Admin\PresentationCrudController');		
 		CRUD::resource('service', 'Admin\ServiceCrudController');
 		CRUD::resource('event', 'Admin\EventCrudController');
-	//	CRUD::resource('relator', 'Admin\RelatorCrudController');	
-	//	CRUD::resource('slide', 'Admin\SlideCrudController'); 
-	//	CRUD::resource('teammember', 'Admin\TeammemberCrudController');
-	//	CRUD::resource('testimonial', 'Admin\TestimonialCrudController');
-	//	CRUD::resource('TrasparentAdminItem', 'Admin\TrasparentAdminItemCrudController');
-	//	CRUD::resource('TrasparentAdminDocs', 'Admin\TrasparentAdminDocsCrudController');
-	//	CRUD::resource('provider', 'Admin\ProviderCrudController');						  							
+		CRUD::resource('relator', 'Admin\RelatorCrudController');	
+		CRUD::resource('slide', 'Admin\SlideCrudController'); 
+		CRUD::resource('teammember', 'Admin\TeammemberCrudController');
+		CRUD::resource('testimonial', 'Admin\TestimonialCrudController');
+		CRUD::resource('TrasparentAdminItem', 'Admin\TrasparentAdminItemCrudController');
+		CRUD::resource('TrasparentAdminDocs', 'Admin\TrasparentAdminDocsCrudController');
+		CRUD::resource('provider', 'Admin\ProviderCrudController');						  							
 	});
 
