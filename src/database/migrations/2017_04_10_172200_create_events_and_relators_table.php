@@ -18,6 +18,7 @@ class CreateEventsAndRelatorsTable extends Migration
             $table->timestamps();
 
             $table->string('title');
+            $table->string('slug')->default('');
             $table->text('description')->nullable();
             $table->string('image')->nullable()->default('/images/no-image.jpg');
             $table->string('address')->nullable();
