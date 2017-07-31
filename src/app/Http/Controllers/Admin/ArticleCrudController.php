@@ -52,7 +52,7 @@ class ArticleCrudController extends CrudController
             'name' => 'title',
             'label' => 'Title',
             'type' => 'text',
-            'placeholder' => 'Your title here',
+            'placeholder' => 'Il Tuo Titolo qui',
             ]);
         $this->crud->addField([
             'name' => 'slug',
@@ -61,17 +61,23 @@ class ArticleCrudController extends CrudController
             'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
                                 // 'disabled' => 'disabled'
             ]);
-        $this->crud->addField([    // TEXT
+    /*    $this->crud->addField([    // TEXT
             'name' => 'date',
             'label' => 'Date',
             'type' => 'date',
             'value' => date('Y-m-d'),
-            ], 'create');
+            ], 'create');*/
+
         $this->crud->addField([    // TEXT
             'name' => 'date',
             'label' => 'Data Pubblicazione',
-            'type' => 'date',
+            'type' => 'date_picker',
+            'date_picker_options' => [
+            'todayBtn' => true,
+            'format' => 'dd-mm-yyyy',
+            'language' => 'it'
             ], 'update');
+
         $this->crud->addField([    // WYSIWYG
             'name' => 'content',
             'label' => 'Contenuto',
