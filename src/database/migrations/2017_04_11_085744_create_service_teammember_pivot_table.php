@@ -17,7 +17,7 @@ class CreateServiceTeammemberPivotTable extends Migration
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->integer('teammember_id')->unsigned()->index();
             $table->foreign('teammember_id')->references('id')->on('teammembers')->onDelete('cascade');
-            $table->primary(['activity_id', 'teammember_id']);
+            $table->primary(['service_id', 'teammember_id']);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateServiceTeammemberPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('activity_teammember');
+        Schema::drop('service_teammember');
     }
 }
