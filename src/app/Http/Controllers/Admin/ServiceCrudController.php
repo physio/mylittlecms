@@ -81,8 +81,22 @@ class ServiceCrudController extends CrudController
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
         // ------ CRUD COLUMNS
-        $this->crud->removeColumns(['category_id','slug', 'content', 'image']);
+        // 
+        // 
+        $this->crud->removeColumn('title')
+        $this->crud->addColumn([
+                                'label' => 'Titolo',
+                                'name' => 'title',
+                            ]);
 
+        $this->crud->removeColumn('published');
+        $this->crud->addColumn([
+           'name' => 'published', // The db column name
+           'label' => "Pubblicato", // Table column heading
+           'type' => 'check'
+           ]);        
+
+        $this->crud->removeColumn('category_id')
         $this->crud->addColumn([
                                 'label' => 'Categoria',
                                 'type' => 'select',
@@ -91,6 +105,9 @@ class ServiceCrudController extends CrudController
                                 'attribute' => 'name',
                                 'model' => "Physio\MyLittleCMS\Models\Category",
                             ]);
+
+
+        $this->crud->removeColumns(['slug', 'content', 'image']);        
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
