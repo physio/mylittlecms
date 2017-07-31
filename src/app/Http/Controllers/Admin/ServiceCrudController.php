@@ -83,7 +83,7 @@ class ServiceCrudController extends CrudController
         // ------ CRUD COLUMNS
         // 
         // 
-        $this->crud->removeColumn('title')
+        $this->crud->removeColumn('title');
         $this->crud->addColumn([
                                 'label' => 'Titolo',
                                 'name' => 'title',
@@ -94,7 +94,7 @@ class ServiceCrudController extends CrudController
            'name' => 'published', // The db column name
            'label' => "Pubblicato", // Table column heading
            'type' => 'check'
-           ]);        
+           ]);          
 
         $this->crud->removeColumn('category_id')
         $this->crud->addColumn([
