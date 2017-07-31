@@ -46,6 +46,13 @@ class ArticleCrudController extends CrudController
            'type' => 'check'
            ]);
 
+        $this->crud->removeColumn('featured'); 
+        $this->crud->addColumn([
+           'name' => 'featured', // The db column name
+           'label' => "In Evidenza", // Table column heading
+           'type' => 'check'
+           ]);        
+
         $this->crud->removeColumns(['slug', 'content', 'image', 'date', 'category_id', 'status', 'user_id']);
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
