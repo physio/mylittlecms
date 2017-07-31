@@ -50,7 +50,7 @@ class Service extends Model
 
     public function category()
     {
-        return $this->belongsTo('Physio\MyLittleCMS\Models\Category');
+        return $this->belongsTo('Physio\MyLittleCMS\Models\Category', 'category_id');
     }
 
     public function Teammembers()

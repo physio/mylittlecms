@@ -55,6 +55,10 @@ class Category extends Model
         return $this->hasMany('Physio\MyLittleCMS\Models\Presentation');
     }
 
+    public function services()
+    {
+        return $this->hasMany('Physio\MyLittleCMS\Models\Service');
+    }
     /*
 	|--------------------------------------------------------------------------
 	| SCOPES

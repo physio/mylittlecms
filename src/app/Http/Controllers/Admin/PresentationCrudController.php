@@ -5,10 +5,10 @@ namespace Physio\MyLittleCMS\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use Physio\MyLittleCMS\Http\Requests\ServiceRequest as StoreRequest;
-use Physio\MyLittleCMS\Http\Requests\ServiceRequest as UpdateRequest;
+use App\Http\Requests\PresentationRequest as StoreRequest;
+use App\Http\Requests\PresentationRequest as UpdateRequest;
 
-class ServiceCrudController extends CrudController
+class PresentationCrudController extends CrudController
 {
 
     public function setUp()
@@ -19,9 +19,9 @@ class ServiceCrudController extends CrudController
 		| BASIC CRUD INFORMATION
 		|--------------------------------------------------------------------------
 		*/
-        $this->crud->setModel("Physio\MyLittleCMS\Models\Service");
-        $this->crud->setRoute("admin/service");
-        $this->crud->setEntityNameStrings('Servizio', 'Servizi');
+        $this->crud->setModel("App\Models\Presentation");
+        $this->crud->setRoute("admin/presentation");
+        $this->crud->setEntityNameStrings('Presentazione', 'Presentazioni');
 
         /*
 		|--------------------------------------------------------------------------
@@ -32,48 +32,44 @@ class ServiceCrudController extends CrudController
         $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
-        $this->crud->addField([    // TEXT
-                                'name' => 'title',
-                                'label' => 'Titolo',
-                                'type' => 'text',
-                                'placeholder' => 'Titolo Servizio',
-                            ]);
-
-        $this->crud->addField([
-                                'name' => 'slug',
-                                'label' => 'Slug (URL)',
-                                'type' => 'text',
-                                'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
-                                // 'disabled' => 'disabled'
-                            ]);
-        
-        $this->crud->addField([    // WYSIWYG
-                                'name' => 'description',
-                                'label' => 'Descrizione',
-                                'type' => 'ckeditor',
-                                'placeholder' => 'Inserisci qui la descrizione.',
-                            ]);
-
-        $this->crud->addField([    // Image
-                                'name' => 'image',
-                                'label' => 'Immagine',
-                                'type' => 'browse',
-                            ]);
-
         $this->crud->addField([    // SELECT
                                 'label' => 'Categoria',
                                 'type' => 'select2',
                                 'name' => 'category_id',
                                 'entity' => 'category',
                                 'attribute' => 'name',
-                                'model' => "Physio\MyLittleCMS\Models\Category",
+                                'model' => "App\Models\Category",
                             ]);
 
-        $this->crud->addField([    // ENUM
-                                'name' => 'published',
-                                'label' => 'Pubblicato',
-                                'type' => 'checkbox',
+        $this->crud->addField([    // WYSIWYG
+                                'name' => 'intro',
+                                'label' => 'Introduzione',
+                                'type' => 'ckeditor',
+                                'placeholder' => 'inserisci qui la tua introduzione alla presentazione',
                             ]);
+
+        $this->crud->addField([    // WYSIWYG
+                                'name' => 'description',
+                                'label' => 'Contenuto',
+                                'type' => 'ckeditor',
+                                'placeholder' => 'inserisci qui il conentuto dell\'articolo.',
+                            ]);
+
+        $this->crud->addField([    
+                                'name' => 'video',
+                                'label' => 'Link Video',
+                                'type' => 'text',
+                                'placeholder' => 'inserisci qui il link al tuo video',
+                            ]);
+
+        $this->crud->addField([
+            'name'        => 'published',
+            'label'       => 'Pubblicato',
+            'type'        => 'radio',
+            'options'     => [  0 => "No",
+                                1 => "Si"
+                             ],
+        ]);        
 
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -81,20 +77,10 @@ class ServiceCrudController extends CrudController
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
         // ------ CRUD COLUMNS
-        $this->crud->removeColumns(['category_id','slug', 'content', 'image']);
-
-        $this->crud->addColumn([
-                                'label' => 'Categoria',
-                                'type' => 'select',
-                                'name' => 'category_id',
-                                'entity' => 'category',
-                                'attribute' => 'name',
-                                'model' => "Physio\MyLittleCMS\Models\Category",
-                            ]);
-        // $this->crud->addColumn(); // add a single column, at the end of the stack
-        // $this->crud->addColumns(); // add multiple columns, at the end of the stack
+        $this->crud->addColumn(['name'=> 'id', 'type'=>'select', 'entity'=>'category', 'attribute'=>'name', 'model'=>'App\Models\Category', 'label' => 'Categoria']); // add a single column, at the end of the stack
+       // $this->crud->addColumns('category_id'); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
-        // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
+        $this->crud->removeColumns(['category_id', 'video', 'description', 'intro']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
 
