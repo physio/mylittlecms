@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Physio\MyLittleCMS\Http\Controllers;
 
 use Backpack\PageManager\app\Models\Page;
 use App\Models\Activity;
