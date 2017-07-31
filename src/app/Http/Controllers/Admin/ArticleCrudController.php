@@ -76,7 +76,7 @@ class ArticleCrudController extends CrudController
             'todayBtn' => true,
             'format' => 'dd-mm-yyyy',
             'language' => 'it'
-            ], 'update');
+            ], 'update']);
 
         $this->crud->addField([    // WYSIWYG
             'name' => 'content',
