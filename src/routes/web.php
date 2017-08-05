@@ -4,6 +4,11 @@ Route::group([
 	'namespace' => '\Physio\MyLittleCMS\Http\Controllers'
 	], function () {
 
+		Route::get('contatti', 'ContactController@index');
+
+		Route::post('contatti', 
+		  ['as' => 'contatti_post', 'uses' => 'ContactController@store']);
+
 		Route::get('/notizie/elenco', 'ArticleController@index');
 		Route::get('/notizie/dettaglio/{slug}', 'ArticleController@show');
 
