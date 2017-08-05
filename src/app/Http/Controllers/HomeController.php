@@ -41,6 +41,20 @@ class HomeController extends Controller
 
         $activities = Service::where('published', 1)->inRandomOrder()->limit(3)->get();
 
-        return view('vendor.MyLittleCMS.home')->with(['title' => 'Home', 'events' => $events, 'slides' => $slides, 'presentation' => $presentation, 'testimonials' => $testimonials, 'activities' => $activities, 'articles' => $articles, 'footer' => $this->getFooterInfo()]);
+        $data['title'] = 'Benvenuto';
+        $data['events'] = $events,
+        $data['slides'] = $slides,
+        $data['presentation'] = $presentation,
+        $data['testimonials'] = $testimonials,
+        $data['activities'] = $activities,
+        $data['content'] = '';
+        $data['articles'] = $articles;
+        $data['extras'] = '';
+        $data['footer'] = $this->getFooterInfo();
+        $data['news'] = $this->getLastNews();   
+
+
+
+        return view('vendor.MyLittleCMS.home')->with($data);
     }
 }
