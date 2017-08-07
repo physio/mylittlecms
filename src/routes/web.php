@@ -3,6 +3,7 @@
 Route::group([
 	'namespace' => '\Physio\MyLittleCMS\Http\Controllers'
 	], function () {
+		Route::get('/', 'HomeController@index');		
 
 		Route::get('contatti', 'ContactController@index');
 
