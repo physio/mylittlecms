@@ -42,11 +42,11 @@ class HomeController extends Controller
         $activities = Service::where('published', 1)->inRandomOrder()->limit(3)->get();
 
         $data['title'] = 'Benvenuto';
-        $data['events'] = $events,
-        $data['slides'] = $slides,
-        $data['presentation'] = $presentation,
-        $data['testimonials'] = $testimonials,
-        $data['activities'] = $activities,
+        $data['events'] = $events;
+        $data['slides'] = $slides;
+        $data['presentation'] = $presentation;
+        $data['testimonials'] = $testimonials;
+        $data['activities'] = $activities;
         $data['content'] = '';
         $data['articles'] = $articles;
         $data['extras'] = '';
