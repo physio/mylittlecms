@@ -49,6 +49,7 @@ class MyLittleCMSServiceProvider extends ServiceProvider
         $this->app->register(\Backpack\LangFileManager\LangFileManagerServiceProvider::class);
         $this->app->register(\Cviebrock\EloquentSluggable\ServiceProvider::class);
         $this->app->register(\Backpack\PageManager\PageManagerServiceProvider::class);
+        $this->app->register(\Backpack\Settings\SettingsServiceProvider::class);
     }
 
 

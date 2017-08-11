@@ -31,7 +31,8 @@
         "greggilbert/recaptcha": "^2.2",
         "spatie/laravel-cookie-consent": "^1.8",
         "cviebrock/eloquent-sluggable": "^4.2",        
-        "spatie/laravel-sitemap": "^2.2"
+        "spatie/laravel-sitemap": "^2.2",
+        "backpack/settings": "^2.0"
     },
     "minimum-stability": "dev",    
     "require-dev": {
