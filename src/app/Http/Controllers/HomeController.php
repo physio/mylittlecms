@@ -47,7 +47,7 @@ class HomeController extends Controller
         $data['presentation'] = $presentation;
         $data['testimonials'] = $testimonials;
         $data['activities'] = $activities;
-        $data['actDetails'] = $activities;
+        $data['actDetails'] = $actDetails;
         $data['shifts'] = $activities;
         $data['content'] = '';
         $data['articles'] = $articles;
