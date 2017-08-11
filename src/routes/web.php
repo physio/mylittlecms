@@ -34,7 +34,7 @@ Route::group([
 
         /** CATCH-ALL ROUTE for Backpack/PageManager - needs to be at the end of your routes.php file  **/
         Route::get('{page}/{subs?}', ['uses' => 'PageController@index'])
-            ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
+        ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
     });
 
 
@@ -55,4 +55,5 @@ Route::group([
         CRUD::resource('TrasparentAdminItem', 'Admin\TrasparentAdminItemCrudController');
         CRUD::resource('TrasparentAdminDocs', 'Admin\TrasparentAdminDocsCrudController');
         CRUD::resource('provider', 'Admin\ProviderCrudController');
+        CRUD::resource('office_shift', 'Admin\Office_shiftCrudController');
     });
