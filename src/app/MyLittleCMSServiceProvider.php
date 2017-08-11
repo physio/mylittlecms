@@ -47,6 +47,8 @@ class MyLittleCMSServiceProvider extends ServiceProvider
         $this->app->register(\Backpack\PermissionManager\PermissionManagerServiceProvider::class);
         $this->app->register(\Cviebrock\EloquentSluggable\ServiceProvider::class);
         $this->app->register(\Backpack\LangFileManager\LangFileManagerServiceProvider::class);
+        $this->app->register(\Cviebrock\EloquentSluggable\ServiceProvider::class);
+        $this->app->register(\Backpack\PageManager\PageManagerServiceProvider::class);
     }
 
 
@@ -57,7 +59,7 @@ class MyLittleCMSServiceProvider extends ServiceProvider
         //$router->aliasMiddleware('admin', \Afrittella\BackProject\Http\Middleware\Admin::class);
         //$router->aliasMiddleware('role', \Afrittella\BackProject\Http\Middleware\Role::class);
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-    }   
+    }
 
 
     public function handleMigrations()
@@ -71,5 +73,5 @@ class MyLittleCMSServiceProvider extends ServiceProvider
                     ], 'migrations');
             }
         }
-    }    
+    }
 }
