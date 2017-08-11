@@ -34,7 +34,7 @@ class HomeController extends Controller
         $presentation = Presentation::where('published', 1)->with('category')->inRandomOrder()->first();
         $testimonials = Testimonial::where('published', 1)->inRandomOrder()->limit(3)->get();
         $articles = Article::where('published', 1)->with('category')->orderBy('updated_at', 'desc')->limit(3)->get();
-        $actDetails = Activity::where('published', 1)->inRandomOrder()->limit(20)->get();
+        $actDetails = Service::where('published', 1)->inRandomOrder()->limit(20)->get();
 
         $now = new Carbon;
         $events = Event::where('dateStart', '>', $now)->where('published', true)->orderBy('dateStart', 'desc')->paginate();
