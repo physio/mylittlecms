@@ -15,19 +15,19 @@ class SlideCrudController extends CrudController
     {
 
         /*
-		|--------------------------------------------------------------------------
-		| BASIC CRUD INFORMATION
-		|--------------------------------------------------------------------------
-		*/
+        |--------------------------------------------------------------------------
+        | BASIC CRUD INFORMATION
+        |--------------------------------------------------------------------------
+        */
         $this->crud->setModel("Physio\MyLittleCMS\Models\Slide");
         $this->crud->setRoute("admin/slide");
         $this->crud->setEntityNameStrings('Slide', 'Slide');
 
         /*
-		|--------------------------------------------------------------------------
-		| BASIC CRUD INFORMATION
-		|--------------------------------------------------------------------------
-		*/
+        |--------------------------------------------------------------------------
+        | BASIC CRUD INFORMATION
+        |--------------------------------------------------------------------------
+        */
 
         $this->crud->setFromDb();
 
@@ -37,41 +37,41 @@ class SlideCrudController extends CrudController
         $this->crud->removeField('image', 'both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
         $this->crud->addField([    // Image
-                        'name' => 'image',
-                        'label' => 'Immagine',
-                        'type' => 'browse',
-                    ]);
+            'name' => 'image',
+            'label' => 'Immagine',
+            'type' => 'browse',
+            ]);
 
         $this->crud->addField([
-                                'name' => 'slug',
-                                'label' => 'Slug (URL)',
-                                'type' => 'text',
-                                'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
-                                // 'disabled' => 'disabled'
-                            ]);
-        
+            'name' => 'slug',
+            'label' => 'Slug (URL)',
+            'type' => 'text',
+            'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
+        // 'disabled' => 'disabled'
+            ]);
+
         $this->crud->addField([    // WYSIWYG
-                                'name' => 'text',
-                                'label' => 'Contenuto',
-                                'type' => 'ckeditor',
-                                'placeholder' => 'Inserisci qui il contenuto',
-                            ]);
+            'name' => 'text',
+            'label' => 'Contenuto',
+            'type' => 'ckeditor',
+            'placeholder' => 'Inserisci qui il contenuto',
+            ]);
 
         $this->crud->addField([    // SELECT
-                                'label' => 'Categoria',
-                                'type' => 'select2',
-                                'name' => 'category_id',
-                                'entity' => 'category_id',
-                                'attribute' => 'name',
-                                'model' => "Physio\MyLittleCMS\Models\Category",
-                            ]);
+            'label' => 'Categoria',
+            'type' => 'select2',
+            'name' => 'category_id',
+            'entity' => 'category_id',
+            'attribute' => 'name',
+            'model' => "Physio\MyLittleCMS\Models\Category",
+            ]);
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
 
-        $this->crud->removeColumns(['intro', 'text', 'image']); // remove an array of columns from the stack
+        $this->crud->removeColumns(['id, intro', 'text', 'image']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
 
@@ -126,21 +126,21 @@ class SlideCrudController extends CrudController
         // $this->crud->limit();
     }
 
-	public function store(StoreRequest $request)
-	{
-		// your additional operations before save here
+    public function store(StoreRequest $request)
+    {
+        // your additional operations before save here
         $redirect_location = parent::storeCrud();
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
-	}
+    }
 
-	public function update(UpdateRequest $request)
-	{
-		// your additional operations before save here
+    public function update(UpdateRequest $request)
+    {
+        // your additional operations before save here
         $redirect_location = parent::updateCrud();
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
-	}
+    }
 }
