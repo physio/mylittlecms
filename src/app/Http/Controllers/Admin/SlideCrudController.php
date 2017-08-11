@@ -31,6 +31,16 @@ class SlideCrudController extends CrudController
 
         $this->crud->setFromDb();
 
+        $this->crud->removeColumn('category_id');
+        $this->crud->addColumn([
+            'label' => 'Categoria',
+            'type' => 'select',
+            'name' => 'category_id',
+            'entity' => 'category',
+            'attribute' => 'name',
+            'model' => "Physio\MyLittleCMS\Models\Category",
+            ]);
+
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
