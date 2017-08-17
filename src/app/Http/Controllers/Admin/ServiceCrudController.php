@@ -116,7 +116,7 @@ class ServiceCrudController extends CrudController
                             ]);
 
 
-        $this->crud->removeColumns(['slug', 'content', 'image', 'description']);
+        $this->crud->removeColumns(['objectId', 'slug', 'content', 'image', 'description']);
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
