@@ -46,7 +46,7 @@ class ServiceCrudController extends CrudController
                                 'hint' => 'Sarà inserito automaticamente se viene lasciato vuoto.',
                                 // 'disabled' => 'disabled'
                             ]);
-        
+
         $this->crud->addField([    // WYSIWYG
                                 'name' => 'description',
                                 'label' => 'Descrizione',
@@ -75,14 +75,23 @@ class ServiceCrudController extends CrudController
                                 'type' => 'checkbox',
                             ]);
 
+        $this->crud->removeField('objectId');
+        $this->crud->addField([
+                                'name' => 'objectId',
+                                'label' => 'Codice "categoria" per importazione da gestionale',
+                                'type' => 'text',
+                                'hint' => 'Sbagliare questo campo potrebbe compromettere la sincronizzazione degli orari delle lezioni. Modifica solo se sei veramente sicuro.',
+                                // 'disabled' => 'disabled'
+                            ]);
+
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
         // ------ CRUD COLUMNS
-        // 
-        // 
+        //
+        //
         $this->crud->removeColumn('title');
         $this->crud->addColumn([
                                 'label' => 'Titolo',
@@ -94,7 +103,7 @@ class ServiceCrudController extends CrudController
            'name' => 'published', // The db column name
            'label' => "Pubblicato", // Table column heading
            'type' => 'check'
-           ]);          
+           ]);
 
         $this->crud->removeColumn('category_id');
         $this->crud->addColumn([
@@ -107,7 +116,7 @@ class ServiceCrudController extends CrudController
                             ]);
 
 
-        $this->crud->removeColumns(['slug', 'content', 'image', 'description']);        
+        $this->crud->removeColumns(['slug', 'content', 'image', 'description']);
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack

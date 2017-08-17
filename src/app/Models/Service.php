@@ -12,7 +12,7 @@ class Service extends Model
     use CrudTrait;
     use Sluggable;
     use SluggableScopeHelpers;
-    
+
      /*
 	|--------------------------------------------------------------------------
 	| GLOBAL VARIABLES
@@ -23,7 +23,7 @@ class Service extends Model
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [ 'slug', 'title', 'description', 'image', 'published', 'category_id'];
+    protected $fillable = [ 'slug', 'title', 'description', 'image', 'published', 'category_id', 'objectId'];
     // protected $hidden = [];
     // protected $dates = [];
 
