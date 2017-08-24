@@ -108,7 +108,7 @@ class ServiceController extends Controller
         $data['list'] = $list;
         $data['category'] = $category;
 
-        return view('vendor.MyLittleCMS.service-grid')->with($data);
+        return view('vendor.MyLittleCMS.service.service-grid')->with($data);
     }
 
     public function getEventsCategory($categoria)
