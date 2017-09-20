@@ -17,8 +17,7 @@ class ServiceController extends Controller
     {
         $page = Service::findBySlug($slug);
 
-        if (!$page)
-        {
+        if (!$page) {
             abort(404, 'Per favore torna alla nostra <a href="'.url('').'">homepage</a>.');
         }
 
@@ -37,9 +36,9 @@ class ServiceController extends Controller
             $query->where('categoria', $categoria);
         })->where('stop', '>', Carbon::yesterday())->max('stop');
 
-        if ($max != null){
+        if ($max != null) {
             $maxtime = Carbon::createFromFormat('Y-m-d H:i:s', $max)->addHours(2);
-            if ($maxtime->minute > 30){
+            if ($maxtime->minute > 30) {
                 $maxtime->minute = 0;
                 $maxtime->hour = $maxtime->hour +1;
             } else {
@@ -56,9 +55,9 @@ class ServiceController extends Controller
             $query->where('categoria', $categoria);
         })->where('stop', '>', Carbon::yesterday())->min('start');
 
-        if ($max != null){
+        if ($max != null) {
             $mintime = Carbon::createFromFormat('Y-m-d H:i:s', $min)->subHours(2);
-            if ($mintime->minute > 30){
+            if ($mintime->minute > 30) {
                 $mintime->minute = 0;
                 $mintime->hour = $mintime->hour +1;
             } else {
@@ -89,15 +88,13 @@ class ServiceController extends Controller
     public function category($title)
     {
         $category = Category::where('name', $title)->first();
-        if (!$category)
-        {
+        if (!$category) {
             abort(404, 'Per favore torna alla nostra <a href="'.url('').'">homepage</a>.');
         }
 
         $list = Service::where('category_id', $category->id)->get();
 
-        if (!$list)
-        {
+        if (!$list) {
             abort(404, 'Per favore torna alla nostra <a href="'.url('').'">homepage</a>.');
         }
 
@@ -111,10 +108,12 @@ class ServiceController extends Controller
         return view('vendor.MyLittleCMS.service.grid')->with($data);
     }
 
-    public function getEventsCategory($categoria)
+    public function getEventsCategory(Request $request, $categoria)
     {
         $events = Round::whereHas('shift', function ($query) use ($categoria) {
-            $query->where('categoria', $categoria);
+            $query->where('categoria', $categoria)
+            ->where('startDate', '>=', $request->input('start'))
+            ->where('endDate', '<=', $request->input('end'));
         })->where('stop', '>', Carbon::yesterday())->get();
 
         // $events = Round::where('id' , '!=', 3)->get();
@@ -143,7 +142,7 @@ class ServiceController extends Controller
         date_default_timezone_set('Europe/Rome');
         $now = date('Y-m-d h:i:s', time());
 
-        $rounds = Round::where('start', '<', $now )->where('stop', '>', $now)->get();
+        $rounds = Round::where('start', '<', $now)->where('stop', '>', $now)->get();
 
         $list = array();
         foreach ($rounds as $round) {
