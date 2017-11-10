@@ -9,16 +9,13 @@ Route::group([
 
         Route::post('contatti', ['as' => 'contatti_post', 'uses' => 'ContactController@store']);
 
-
-
-        Route::get('/news/{slug}', 'ArticleController@index');
-
         Route::get('/attivita/elenco/{title}', 'ServiceController@category');
         Route::get('/attivita/{slug}', 'ServiceController@show');
 
         Route::get('/speciali/{slug}', 'SpecialController@index');
 
         Route::get('/notizie/elenco', 'ArticleController@index');
+        Route::get('/news/{slug}', 'ArticleController@show');
         Route::get('/notizie/dettaglio/{slug}', 'ArticleController@show');
 
         Route::get('/servizi/{slug}', 'ServiceController@index');
